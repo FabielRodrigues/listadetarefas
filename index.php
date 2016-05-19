@@ -1,3 +1,22 @@
+<?php
+require_once ('conexao.php');
+/*
+* Seleciona a tabela de tarefas
+*/
+$sth = $pdo->prepare("SELECT * FROM lista ORDER BY data ASC");
+$sth->execute();
+$result = $sth->fetchAll();
+$q1 = 0;
+$q2 = 0;
+foreach ($result as $t1) :
+    if ($t1['status'] == 1) {
+        $q1++;
+    } else {
+        $q2++;
+    }
+
+endforeach;
+?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <!-- Optional theme -->
@@ -8,16 +27,30 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<?php
-require_once ('conexao.php');
-/*
-* Seleciona a tabela de tarefas
-*/
-        $sth = $pdo->prepare("SELECT * FROM lista ORDER BY data ASC");
-        $sth->execute();
-        $result = $sth->fetchAll();
 
-?>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<meta charset="utf-8">
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Tarefas', 'Quantidade'],
+            ['Feitas',     <?php echo $q1; ?>],
+            ['Pendentes',  <?php echo $q2; ?>],
+        ]);
+
+        var options = {
+            title: 'Relatório de tarefas'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+</script>
+
 <div class="container">
     <h1 class="alert alert-info text-center">LISTA DE TAREFAS</h1>
     <form method="post" action="insert.php">
@@ -72,6 +105,7 @@ require_once ('conexao.php');
             </tbody>
         <?php endforeach; ?>
     </table>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
 </div>
 <script src="//code.jquery.com/jquery-1.12.0.min.js" ></script>
 <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" ></script>

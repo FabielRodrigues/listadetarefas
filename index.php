@@ -54,7 +54,7 @@ endforeach;
 <div class="container">
     <h1 class="alert alert-info text-center">LISTA DE TAREFAS</h1>
     <form method="post" action="insert.php">
-        <input type="text" name="tarefa" PLACEHOLDER="INSERIR TAREFA..." class="form-control"/><br />
+        <input type="text" name="tarefa" required PLACEHOLDER="INSERIR TAREFA..." class="form-control"/><br />
 
         <input type="submit" value="ENVIAR" class="btn btn-success btn-block" />
     </form>
@@ -76,8 +76,8 @@ endforeach;
                 </th>
             </tr>
         </thead>
-        <?php foreach ($result as $r) : ?>
             <tbody>
+            <?php foreach ($result as $r) : ?>
                 <tr>
                     <td>
                         <?php  echo $r['nome']; ?>
@@ -102,17 +102,18 @@ endforeach;
                         <a href="delete.php?id=<?php echo $r['idlista']; ?>" class="btn btn-danger btn-sm">DELETAR</a>
                     </td>
                 </tr>
+            <?php endforeach; ?>
             </tbody>
-        <?php endforeach; ?>
     </table>
     <div id="piechart" style="width: 900px; height: 500px;"></div>
 </div>
+<!-- Jquery -->
 <script src="//code.jquery.com/jquery-1.12.0.min.js" ></script>
+<!-- Script Datatables -->
 <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" ></script>
 <script>
     $(document).ready(function() {
         $('#table').DataTable({
-            "order": [[ 1, "desc" ]],
             language: {
                 url:'http://cdn.datatables.net/plug-ins/1.10.9/i18n/Portuguese-Brasil.json'
             }

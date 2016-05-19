@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: fabiel.rodrigues
- * Date: 19/05/2016
- * Time: 12:10
- */
 require_once ('conexao.php');
 /*
  * Inserindo dados na tabela de tarefas

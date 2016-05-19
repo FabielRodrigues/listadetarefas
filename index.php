@@ -9,12 +9,6 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <?php
-/**
- * Created by PhpStorm.
- * User: fabiel.rodrigues
- * Date: 19/05/2016
- * Time: 11:36
- */
 require_once ('conexao.php');
 /*
 * Seleciona a tabela de tarefas

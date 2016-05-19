@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: fabiel.rodrigues
- * Date: 19/05/2016
- * Time: 12:16
- */
 /*
 * Conecta com banco de dados.
 */

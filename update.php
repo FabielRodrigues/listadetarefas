@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: fabiel.rodrigues
- * Date: 19/05/2016
- * Time: 13:52
- */
 require_once ('conexao.php');
 
 $id = $_GET['id'];
